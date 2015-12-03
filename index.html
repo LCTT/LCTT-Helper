@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>LCTT 选题工具</title>
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.5.0/css/amazeui.min.css" type="text/css">
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.ie8polyfill.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.widgets.helper.min.js"></script>
+    <script type="text/javascript" src="http://cdn.amazeui.org/amazeui/2.5.0/js/amazeui.widgets.helper.min.js"></script>
+    <script charset="utf-8" src="kindeditor/kindeditor-all-min.js"></script>
+	<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
+	<script charset="utf-8" src="markdown/dist/to-markdown.js"></script>
+</head>
+
+<body>
+		<header class="am-topbar am-topbar-inverse">
+		  <h1 class="am-topbar-brand">
+		    <a href="http://edit.ixiqin.com">LCTT 选题工具</a>
+		  </h1>
+		  <div class="am-topbar-right">
+			  <button class="am-btn am-btn-secondary am-topbar-btn am-btn-sm am-dropdown-toggle" data-am-dropdown-toggle="" onclick='window.location.href="https://github.com/bestony/LCTT-Helper"'>GitHub</button>
+			  </div>
+		</header>
+		<div class="am-g">
+		  <div class="am-u-sm-6">
+				<div class="am-panel am-panel-default">
+				  <div class="am-panel-hd">此处粘贴HTML</div>
+				  <div class="am-panel-bd">
+				  <textarea id="ke" name="content"></textarea>
+
+				  </div>
+				</div>
+		  </div>
+		  <div class="am-u-sm-6">
+				  <div class="am-panel am-panel-default">
+				  <div class="am-panel-hd">此处复制Markdown</div>
+				  <div class="am-panel-bd">
+				  <button type="button" class="am-btn am-btn-primary am-btn-block" name="getHtml">获取MarkDown!</button>
+					<pre>## 欢迎使用LCTT选题工具
+
+此工具为方便LCTT(LinuxCN Translate Team)选题将HTML页面转化为MarkDown语法格式的文件而设计。
+
+食用方法：
+
+1.  将需要翻译的文章拖到编辑框内
+2.  使用编辑器自带的按钮修改具体效果
+3.  使用按钮里的预览查看效果
+4.  [非必须]部分效果可通过第二个按钮来修改代码实现
+5.  点击右侧的'获取MarkDown!'
+6.  复制下方选择框内的Markdown格式的代码
+
+
+提交意见：到https://github.com/bestony/LCTT-Helper/issues
+
+贡献代码：Fork我的版本库，修改，并PR
+
+联系我：LCTT群内@xiqingongzi即可</pre>
+				  </div>
+				</div>
+		  </div>
+		</div>
+	<script>
+				var editor;
+				KindEditor.ready(function(K) {
+					editor = K.create('textarea[name="content"]', {
+						resizeType : 1,
+						allowPreviewEmoticons : false,
+						allowImageUpload : false,
+						items : [
+						'preview','source','|',
+						'formatblock','bold', 'italic', 'underline','hr','table','code','wordpaste',
+						'removeformat', '|', 'insertorderedlist','insertunorderedlist', '|', 'image', 'link'
+							]
+					});
+					K('button[name=getHtml]').click(function(e) {
+						 $("pre").html(toMarkdown(editor.html(), { gfm: true }));
+					});
+				});
+					
+	</script>
+</body>
+
+</html>
