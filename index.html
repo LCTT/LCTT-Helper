@@ -13,6 +13,7 @@
     <script charset="utf-8" src="kindeditor/kindeditor-all-min.js"></script>
 	<script charset="utf-8" src="kindeditor/lang/zh-CN.js"></script>
 	<script charset="utf-8" src="markdown/dist/to-markdown.js"></script>
+	<script src="clipboard.min.js"></script>
 </head>
 
 <body>
@@ -38,8 +39,9 @@
 				  <div class="am-panel am-panel-default">
 				  <div class="am-panel-hd">此处复制Markdown</div>
 				  <div class="am-panel-bd">
-				  <button type="button" class="am-btn am-btn-primary am-btn-block" name="getHtml">获取MarkDown!</button>
-					<pre>## 欢迎使用LCTT选题工具
+				  <button type="button" class="am-btn am-btn-primary " name="getHtml">获取MarkDown!</button>
+				  <button type="button" class="am-btn am-btn-primary copy"   data-clipboard-action="copy" data-clipboard-target="#new">复制到剪贴板!</button>
+					<pre id="new">## 欢迎使用LCTT选题工具
 
 此工具为方便LCTT(LinuxCN Translate Team)选题将HTML页面转化为MarkDown语法格式的文件而设计。
 
@@ -79,7 +81,7 @@
 						 $("pre").html(toMarkdown(editor.html(), { gfm: true }));
 					});
 				});
-				
+				new Clipboard('.copy');
 	</script>
 </body>
 
