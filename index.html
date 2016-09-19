@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LCTT选题工具</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/button.css" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/highlight.js/9.6.0/styles/default.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/wangEditor.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>LCTT选题工具</h1>
+            <a class="button button-highlight button-jumbo" onclick="getmd();">生成MD</a>
+            <a class="button button-royal button-jumbo" id="btn-copy" data-clipboard-action="copy" data-clipboard-target="#md">复制到剪贴板</a>
+
+        </div>
+    </header>
+    <div class="content">
+
+        <div class="col-md-6">
+            <div id="editor"></div>
+        </div>
+        <div class="col-md-6">
+            <pre id="md">此工具为方便LCTT(LinuxCN Translate Team)选题将HTML页面转化为MarkDown语法格式的文件而设计。
+
+使用方法：
+
+1.  将需要翻译的文章拖到编辑框内
+2.  使用编辑器自带的按钮修改具体效果
+3.  使用按钮里的预览查看效果
+4.  [非必须]部分效果可通过第二个按钮来修改代码实现
+5.  点击右侧的'获取MarkDown!'
+6.  复制下方选择框内的Markdown格式的代码
+
+
+提交意见：到https://github.com/bestony/LCTT-Helper/issues
+
+贡献代码：Fork我的版本库，修改，并PR
+
+联系我：LCTT群内@xiqingongzi即可</pre>
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="js/lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/wangEditor.min.js"></script>
+    <script type="text/javascript" src="js/lctt-menu.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/to-markdown.js"></script>
+    <script src="//cdn.jsdelivr.net/highlight.js/9.6.0/highlight.min.js"></script>
+    <script type="text/javascript" src="js/clipboard.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+</body>
+
+</html>
