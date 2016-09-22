@@ -34,6 +34,9 @@ var testEditor;
 testEditor = editormd({
     id: "editormd",
     width: "100%",
-    height: "550px",
-    path: "js/lib/"
+    height: "553px",
+    path: "js/lib/",
+    toolbarIcons: function() {
+        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "watch", "fullscreen", "preview"]
+    },
 });
