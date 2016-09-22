@@ -254,7 +254,18 @@ module.exports = [
       return '~~' + content + '~~'
     }
   },
-
+  {
+    filter: 'pre',
+    replacement: function (content) {
+      return '```\n' + content + '\n```'
+    }
+  },
+   {
+    filter: 'code',
+    replacement: function (content) {
+      return '`' + content + '`'
+    }
+  },
   {
     filter: function (node) {
       return node.type === 'checkbox' && node.parentNode.nodeName === 'LI'
@@ -317,28 +328,6 @@ module.exports = [
     }
   },
 
-  // Syntax-highlighted code blocks
-  {
-    filter: function (node) {
-      return node.nodeName === 'PRE' &&
-      node.parentNode.nodeName === 'DIV' &&
-      highlightRegEx.test(node.parentNode.className)
-    },
-    replacement: function (content, node) {
-      var language = node.parentNode.className.match(highlightRegEx)[1]
-      return '\n\n```' + language + '\n' + node.textContent + '\n```\n\n'
-    }
-  },
-
-  {
-    filter: function (node) {
-      return node.nodeName === 'DIV' &&
-      highlightRegEx.test(node.className)
-    },
-    replacement: function (content) {
-      return '\n\n' + content + '\n\n'
-    }
-  }
 ]
 
 },{}],3:[function(require,module,exports){
