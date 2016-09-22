@@ -6,8 +6,6 @@ editor.config.menus = [
     '|', // '|' 是菜单组的分割线
     'bold',
     'italic',
-
-
     'quote',
     'code',
     'head',
@@ -32,3 +30,10 @@ function getmd() {
 }
 // 剪贴板
 new Clipboard('#btn-copy');
+var testEditor;
+testEditor = editormd({
+    id: "editormd",
+    width: "100%",
+    height: "550px",
+    path: "js/lib/"
+});
