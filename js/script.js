@@ -6,14 +6,15 @@ editor.config.menus = [
     '|', // '|' 是菜单组的分割线
     'bold',
     'italic',
-    'eraser',
-    '|',
+
+
     'quote',
     'code',
     'head',
     'unorderlist',
     'orderlist',
     '|',
+    'eraser',
     'tomarkdown',
 
 ];
