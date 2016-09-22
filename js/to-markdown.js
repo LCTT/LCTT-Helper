@@ -436,15 +436,24 @@ module.exports = [
       return '  \n'
     }
   },
-
   {
-    filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+    filter: 'h1',
     replacement: function (content, node) {
       var hLevel = node.nodeName.charAt(1)
-      var hPrefix = ''
+      var hPrefix = '#'
+     
+      return '\n\n' + hPrefix + ' ' + content + '\n\n'
+    }
+  },
+  {
+    filter: [ 'h2', 'h3', 'h4', 'h5', 'h6'],
+    replacement: function (content, node) {
+      var hLevel = node.nodeName.charAt(1)
+      var hPrefix = '###'
+      hLevel= hLevel-3;
       for (var i = 0; i < hLevel; i++) {
-        hPrefix += '#'
-      }
+       hPrefix += '#'
+       }
       return '\n\n' + hPrefix + ' ' + content + '\n\n'
     }
   },
