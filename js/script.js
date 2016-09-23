@@ -38,6 +38,6 @@ lctteditor = editormd({
     height: "553px",
     path: "js/lib/",
     toolbarIcons: function() {
-        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "|", "fullscreen", "info", "search", "||", "watch", "fullscreen", "preview"]
+        return ["undo", "redo", "|", "bold", "h1", "h2", "h3", "h4", "h5", "|", "link", "image", "code", "table", "|", "list-ul", "list-ol", "hr", "|", "preview", "|", "search", ]
     },
 });
