@@ -23,20 +23,17 @@ editor.create();
 function getmd() {
     var content = toMarkdown(editor.$txt.html(), { gfm: true });
     content = content + '\n\n--------------------------------------------------------------------------------\n\nvia: 网址\n\n作者：[ ][a]\n\n译者：[译者ID](https://github.com/译者ID)\n\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出';
-    $('#md').html(content);
-    $('pre#md').each(function(i, block) {
-        hljs.highlightBlock(block);
-    });
+    lctteditor.insertValue(content);
+    lctteditor.focus();
 }
-// 剪贴板
-new Clipboard('#btn-copy');
-var testEditor;
-testEditor = editormd({
+
+var lctteditor;
+lctteditor = editormd({
     id: "editormd",
     width: "100%",
     height: "553px",
     path: "js/lib/",
     toolbarIcons: function() {
-        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "watch", "|", "fullscreen", "info", "||", "watch", "fullscreen", "preview"]
+        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "|", "fullscreen", "info", "||", "watch", "fullscreen", "preview"]
     },
 });
