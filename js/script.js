@@ -26,6 +26,10 @@ function getmd() {
     lctteditor.insertValue(content);
     lctteditor.focus();
 }
+// 复制内容
+function copy() {
+    superClipBoard.copy(lctteditor.getValue());
+}
 
 var lctteditor;
 lctteditor = editormd({
@@ -34,6 +38,6 @@ lctteditor = editormd({
     height: "553px",
     path: "js/lib/",
     toolbarIcons: function() {
-        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "|", "fullscreen", "info", "||", "watch", "fullscreen", "preview"]
+        return ["undo", "redo", "|", "bold", "hr", "|", "preview", "|", "fullscreen", "info", "search", "||", "watch", "fullscreen", "preview"]
     },
 });

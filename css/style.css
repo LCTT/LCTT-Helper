@@ -6,7 +6,7 @@ body {
 /* Header */
 
 header {
-    height: 180px;
+    height: 200px;
     background: #f1f1f1;
     text-align: center;
     padding: 10px 0px;
@@ -18,9 +18,11 @@ header.h1 {
 
 
 /* Content */
-div.content{
-    padding:15px 0px;
+
+div.content {
+    padding: 15px 0px;
 }
+
 div#editor {
     height: 560px;
 }
