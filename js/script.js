@@ -18,12 +18,18 @@ editor.config.menus = [
 ];
 
 editor.create();
-
+// 生成Number Link 
+function getLink(element, index, array) {
+    num = index + 1;
+    lctteditor.insertValue("\n[" + num + "]:[" + element + "]")
+}
 // 转换MD
 function getmd() {
     var content = toMarkdown(editor.$txt.html(), { gfm: true });
     content = content + '\n\n--------------------------------------------------------------------------------\n\nvia: 网址\n\n作者：[ ][a]\n\n译者：[译者ID](https://github.com/译者ID)\n\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出';
     lctteditor.insertValue(content);
+    lctteditor.insertValue("\n\n[a]:");
+    linkarry.forEach(getLink);
     lctteditor.focus();
 }
 // 复制内容
