@@ -1,6 +1,7 @@
 // 实例化编辑器
-wangEditor.config.printLog = false;
+wangEditor.config.printLog = false;//禁止打印调试信息
 var editor = new wangEditor('editor');
+// 设置按钮
 editor.config.menus = [
     'source',
     '|', // '|' 是菜单组的分割线
@@ -14,7 +15,6 @@ editor.config.menus = [
     '|',
     'eraser',
     'tomarkdown',
-
 ];
 
 editor.create();
@@ -29,6 +29,7 @@ function getmd() {
     content = content + '\n\n--------------------------------------------------------------------------------\n\nvia: 网址\n\n作者：[ ][a]\n\n译者：[译者ID](https://github.com/译者ID)\n\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出';
     lctteditor.insertValue(content);
     lctteditor.insertValue("\n\n[a]:");
+    //通过forEach生成LinkMap，放在文件后
     linkarry.forEach(getLink);
     lctteditor.focus();
 }
