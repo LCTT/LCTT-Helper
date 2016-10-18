@@ -1,5 +1,6 @@
 ##LCTT选题工具
-![20160712更新](https://ooo.0o0.ooo/2016/07/12/57849fe03e72c.png)
+DEMO: http://lctt.ixiqin.com
+
 此工具为方便LCTT(LinuxCN Translate Team)选题将HTML页面转化为MarkDown语法格式的文件而设计。
 
 使用方法：
