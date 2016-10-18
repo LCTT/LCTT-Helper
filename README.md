@@ -3,8 +3,7 @@
 此工具为方便LCTT(LinuxCN Translate Team)选题将HTML页面转化为MarkDown语法格式的文件而设计。
 
 使用方法：
-![此处输入图片的描述][1]
-
+[点此查看动图](http://ww3.sinaimg.cn/large/61a0fb85gw1f8wgtf9esmg21530nz7ws.gif)
 
 提交问题：到https://github.com/bestony/LCTT-Helper/issues
 
@@ -16,6 +15,3 @@
 Update Log：
  - 2016/7/12: 更新了复制到剪贴板的功能/更新错误问题。
  - 2016/10/18:修复了连续代码没有换行的问题
- 
- 
- [1]: http://ww3.sinaimg.cn/large/61a0fb85gw1f8wgtf9esmg21530nz7ws.gif
