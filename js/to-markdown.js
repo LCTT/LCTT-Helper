@@ -279,7 +279,7 @@ var linkarry = new Array();//定义全局变量，用于Map URL
                 {
                     filter: 'pre',
                     replacement: function(content) {
-                        return '```\n' + content + '\n```'
+                        return '\n```\n' + content + '\n```'
                     }
                 },
                 {
