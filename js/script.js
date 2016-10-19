@@ -1,5 +1,5 @@
 // 实例化编辑器
-wangEditor.config.printLog = false;//禁止打印调试信息
+wangEditor.config.printLog = false; //禁止打印调试信息
 var editor = new wangEditor('editor');
 // 设置按钮
 editor.config.menus = [
@@ -21,7 +21,7 @@ editor.create();
 // 生成Number Link 
 function getLink(element, index, array) {
     num = index + 1;
-    lctteditor.insertValue("\n[" + num + "]:[" + element + "]")
+    lctteditor.insertValue("\n[" + num + "]:" + element + "")
 }
 // 转换MD
 function getmd() {
