@@ -277,7 +277,7 @@ var linkarry = new Array(); //定义全局变量，用于Map URL
                     }
                 },
                 {
-                    filter: ['div', 'figure','span'],
+                    filter: ['div', 'figure', 'span'],
                     replacement: function(content) {
                         return content
                     }
