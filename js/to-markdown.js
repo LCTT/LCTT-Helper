@@ -1,4 +1,4 @@
-var linkarry = new Array();//定义全局变量，用于Map URL
+var linkarry = new Array(); //定义全局变量，用于Map URL
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") { module.exports = f() } else if (typeof define === "function" && define.amd) { define([], f) } else {
         var g;
@@ -277,6 +277,12 @@ var linkarry = new Array();//定义全局变量，用于Map URL
                     }
                 },
                 {
+                    filter: ['div', 'figure','span'],
+                    replacement: function(content) {
+                        return content
+                    }
+                },
+                {
                     filter: 'pre',
                     replacement: function(content) {
                         return '\n```\n' + content + '\n```'
@@ -462,7 +468,7 @@ var linkarry = new Array();//定义全局变量，用于Map URL
                     replacement: function(content, node) {
                         var hLevel = node.nodeName.charAt(1)
                         var hPrefix = '###'
-                        // 对提取数据进行处理，标签从h3进行处理
+                            // 对提取数据进行处理，标签从h3进行处理
                         hLevel = hLevel - 3;
                         for (var i = 0; i < hLevel; i++) {
                             hPrefix += '#'
@@ -511,7 +517,7 @@ var linkarry = new Array();//定义全局变量，用于Map URL
                     },
                     replacement: function(content, node) {
                         var titlePart = node.title ? ' "' + node.title + '"' : ''
-                        linkarry.push(node.getAttribute('href'))// 将href推入Map,后期进行输出
+                        linkarry.push(node.getAttribute('href')) // 将href推入Map,后期进行输出
                             // return '[' + content + '](' + node.getAttribute('href') + titlePart + ')'
                         return '[' + content + '][' + linkarry.length + ']'
                     }
