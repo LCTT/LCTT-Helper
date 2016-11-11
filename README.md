@@ -6,7 +6,7 @@ DEMO: http://lctt.ixiqin.com
 使用方法：
 [点此查看动图](http://ww3.sinaimg.cn/large/61a0fb85gw1f8wgtf9esmg21530nz7ws.gif)
 
-提交问题：到https://github.com/bestony/LCTT-Helper/issues
+提交问题：到https://github.com/LCTT/LCTT-Helper/issues
 
 贡献代码：Fork我的版本库，修改，并PR
 
