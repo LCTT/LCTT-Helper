@@ -32,7 +32,7 @@
 
         // 菜单正常状态下，点击将触发该事件
         menu.clickEvent = function(e) {
-            getmd();
+            generateMarkdown();
         };
 
         // 增加到editor对象中
