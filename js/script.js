@@ -25,12 +25,17 @@ function getLink(element, index, array) {
 }
 // 转换MD
 function getmd() {
+    linkArray = [];
+    lctteditor.clear();
+    linkAmount = $("#editor a").length;
+
     var content = toMarkdown(editor.$txt.html(), { gfm: true });
     content = content + '\n\n--------------------------------------------------------------------------------\n\nvia: 网址\n\n作者：[ ][a]\n译者：[译者ID](https://github.com/译者ID)\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出';
     lctteditor.insertValue(content);
     lctteditor.insertValue("\n\n[a]:");
     //通过forEach生成LinkMap，放在文件后
-    linkarry.forEach(getLink);
+    linkArray.reverse();
+    linkArray.forEach(getLink);
     lctteditor.focus();
 }
 // 复制内容
