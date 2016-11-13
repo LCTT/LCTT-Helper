@@ -33,7 +33,7 @@ function initialize() {
     titleLock = false;
 }
 
-META_INF = '\n\n' + '-'.repeat(80) + '\n\nvia: 网址\n\n作者：[ ][a]\n译者：[译者ID](https://github.com/译者ID)\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出'"\n\n[a]:";
+META_INF = '\n\n' + '-'.repeat(80) + '\n\nvia: 网址\n\n作者：[ ][a]\n译者：[译者ID](https://github.com/译者ID)\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出\n\n[a]:';
 
 function generateMarkdown() {
     initialize();
