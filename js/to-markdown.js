@@ -467,10 +467,9 @@ var linkAmount = 0;
                 {
                     filter: 'h1',
                     replacement: function(content, node) {
-                        var hLevel = node.nodeName.charAt(1)
-                        var hPrefix = '#'
-
-                        return '\n\n' + hPrefix + ' ' + content + '\n\n'
+                        // var hPrefix = '#'
+                        // return '\n\n' + hPrefix + ' ' + content + '\n\n'
+                        return content + "\n" + "=".repeat(60);
                     }
                 },
                 {
