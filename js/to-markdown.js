@@ -285,7 +285,10 @@ var linkarry = new Array(); //定义全局变量，用于Map URL
                 {
                     filter: 'pre',
                     replacement: function(content) {
-                        return '\n```\n' + content + '\n```\n'
+                        if (!content.endsWith('\n')) {
+                            content += '\n'
+                        }
+                        return '\n```\n' + content + '```\n'
                     }
                 },
                 {
@@ -352,7 +355,12 @@ var linkarry = new Array(); //定义全局变量，用于Map URL
                             node.firstChild.nodeName === 'CODE'
                     },
                     replacement: function(content, node) {
-                        return '\n\n```\n' + node.firstChild.textContent + '\n```\n\n'
+                        console.log(content);
+                        let code_content = node.firstChild.textContent
+                        if (!code_content.endsWith('\n')) {
+                            code_content += '\n'
+                        }
+                        return '\n\n```\n' + code_content + '```\n\n'
                     }
                 },
 
