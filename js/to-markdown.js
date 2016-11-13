@@ -1,5 +1,5 @@
 var linkArray = new Array(); //定义全局变量，用于Map URL
-var linkAmount = 0;
+var titleLock = false;
 
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") { module.exports = f() } else if (typeof define === "function" && define.amd) { define([], f) } else {
@@ -86,7 +86,8 @@ var linkAmount = 0;
                     elem = inqueue.shift()
                     outqueue.push(elem)
                     children = elem.childNodes
-                    for (i = 0; i < children.length; i++) {
+                    // for (i = 0; i < children.length; i++) {
+                    for (i = children.length - 1; i >= 0; i--) {
                         if (children[i].nodeType === 1) inqueue.push(children[i])
                     }
                 }
@@ -469,7 +470,13 @@ var linkAmount = 0;
                     replacement: function(content, node) {
                         // var hPrefix = '#'
                         // return '\n\n' + hPrefix + ' ' + content + '\n\n'
-                        return content + "\n" + "=".repeat(60);
+                        if (!titleLock) {
+                            titleLock = true;
+                            return content + "\n" + "=".repeat(60);
+                        }
+                        else {
+                            return '\n\n' + '# ' + content + '\n\n'
+                        }
                     }
                 },
                 {
@@ -526,10 +533,8 @@ var linkAmount = 0;
                     },
                     replacement: function(content, node) {
                         var titlePart = node.title ? ' "' + node.title + '"' : ''
-                        var linkNumber
-                        linkNumber = linkAmount - linkArray.length
                         linkArray.push(node.getAttribute('href')) // 将href推入linkArray, 后期进行输出
-                        return '[' + content + '][' + linkNumber + ']'
+                        return '[' + content + '][' + linkArray.length + ']'
                     }
                 },
 

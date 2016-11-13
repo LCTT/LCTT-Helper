@@ -27,7 +27,7 @@ function getLink(element, index, array) {
 function initialize() {
     linkArray = [];
     lctteditor.clear();
-    linkAmount = $("#editor a").length;
+    var titleLock = false;
 }
 // 转换MD
 function getmd() {
@@ -38,7 +38,6 @@ function getmd() {
     lctteditor.insertValue(content);
     lctteditor.insertValue("\n\n[a]:");
     //通过forEach生成LinkMap，放在文件后
-    linkArray.reverse();
     linkArray.forEach(getLink);
     lctteditor.focus();
 }
