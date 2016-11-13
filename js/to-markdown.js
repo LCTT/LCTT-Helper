@@ -1,4 +1,6 @@
-var linkarry = new Array(); //定义全局变量，用于Map URL
+var linkArray = new Array(); //定义全局变量，用于Map URL
+var linkAmount = 0;
+
 (function(f) {
     if (typeof exports === "object" && typeof module !== "undefined") { module.exports = f() } else if (typeof define === "function" && define.amd) { define([], f) } else {
         var g;
@@ -525,9 +527,10 @@ var linkarry = new Array(); //定义全局变量，用于Map URL
                     },
                     replacement: function(content, node) {
                         var titlePart = node.title ? ' "' + node.title + '"' : ''
-                        linkarry.push(node.getAttribute('href')) // 将href推入Map,后期进行输出
-                            // return '[' + content + '](' + node.getAttribute('href') + titlePart + ')'
-                        return '[' + content + '][' + linkarry.length + ']'
+                        var linkNumber
+                        linkNumber = linkAmount - linkArray.length
+                        linkArray.push(node.getAttribute('href')) // 将href推入linkArray, 后期进行输出
+                        return '[' + content + '][' + linkNumber + ']'
                     }
                 },
 
