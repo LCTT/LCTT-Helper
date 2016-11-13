@@ -23,11 +23,15 @@ function getLink(element, index, array) {
     num = index + 1;
     lctteditor.insertValue("\n[" + num + "]:" + element + "")
 }
-// 转换MD
-function getmd() {
+
+function initialize() {
     linkArray = [];
     lctteditor.clear();
     linkAmount = $("#editor a").length;
+}
+// 转换MD
+function getmd() {
+    initialize();
 
     var content = toMarkdown(editor.$txt.html(), { gfm: true });
     content = content + '\n\n--------------------------------------------------------------------------------\n\nvia: 网址\n\n作者：[ ][a]\n译者：[译者ID](https://github.com/译者ID)\n校对：[校对者ID](https://github.com/校对者ID)\n\n本文由 [LCTT](https://github.com/LCTT/TranslateProject) 原创编译，[Linux中国](https://linux.cn/) 荣誉推出';
