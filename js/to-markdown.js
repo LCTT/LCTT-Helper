@@ -287,7 +287,8 @@ var titleLock = false;
                 },
                 {
                     filter: 'pre',
-                    replacement: function(content) {
+                    replacement: function(content, node) {
+                        let content = node.innerText
                         if (!content.endsWith('\n')) {
                             content += '\n'
                         }
@@ -358,7 +359,6 @@ var titleLock = false;
                             node.firstChild.nodeName === 'CODE'
                     },
                     replacement: function(content, node) {
-                        console.log(content);
                         let code_content = node.firstChild.textContent
                         if (!code_content.endsWith('\n')) {
                             code_content += '\n'
