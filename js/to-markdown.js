@@ -288,11 +288,11 @@ var titleLock = false;
                 {
                     filter: 'pre',
                     replacement: function(content, node) {
-                        let content = node.innerText
-                        if (!content.endsWith('\n')) {
-                            content += '\n'
+                        let content_text = node.innerText
+                        if (!content_text.endsWith('\n')) {
+                            content_text += '\n'
                         }
-                        return '\n```\n' + content + '```\n'
+                        return '\n```\n' + content_text + '```\n'
                     }
                 },
                 {
