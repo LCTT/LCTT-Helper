@@ -503,7 +503,7 @@ var titleLock = false;
                 {
                     filter: ['em', 'i'],
                     replacement: function(content) {
-                        return '_' + content + '_'
+                        return ' _' + content + '_ '
                     }
                 },
 
