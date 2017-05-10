@@ -48,7 +48,3 @@
 ### 致谢
 
 - [to-markdown](https://github.com/domchristie/to-markdown): An HTML to Markdown converter written in JavaScript 
-----------------------
-Update Log：
- - 2016/7/12: 更新了复制到剪贴板的功能/更新错误问题。
- - 2016/10/18:修复了连续代码没有换行的问题
