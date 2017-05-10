@@ -10,7 +10,7 @@
 
 演示站点 ： lctt.ixiqin.com
 
-![操作演示](https://postimg.aliavv.com/mbp/6b2ml.gif)
+![操作演示](https://postimg.aliavv.com/mbp/90h2h.gif)
 
 ### 特性
 
