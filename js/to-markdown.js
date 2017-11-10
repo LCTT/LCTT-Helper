@@ -15,8 +15,6 @@ var mdConverters = require('./lib/md-converters')
 var gfmConverters = require('./lib/gfm-converters')
 var HtmlParser = require('./lib/html-parser')
 var collapse = require('collapse-whitespace')
-var linkArray = []
-var titleLock = false;
 
 /*
  * Utilities
@@ -64,7 +62,7 @@ function bfsOrder (node) {
     elem = inqueue.shift()
     outqueue.push(elem)
     children = elem.childNodes
-    for (i = children.length - 1; i >= 0; i--) {
+    for (i = 0; i < children.length; i++) {
       if (children[i].nodeType === 1) inqueue.push(children[i])
     }
   }
@@ -235,7 +233,7 @@ toMarkdown.outer = outer
 
 module.exports = toMarkdown
 
-},{"./lib/gfm-converters":2,"./lib/html-parser":3,"./lib/md-converters":4,"collapse-whitespace":6}],2:[function(require,module,exports){
+},{"./lib/gfm-converters":2,"./lib/html-parser":3,"./lib/md-converters":4,"collapse-whitespace":7}],2:[function(require,module,exports){
 'use strict'
 
 function cell (content, node) {
@@ -425,78 +423,57 @@ function shouldUseActiveX () {
 
 module.exports = canParseHtmlNatively() ? _window.DOMParser : createHtmlParser()
 
-},{"jsdom":8}],4:[function(require,module,exports){
+},{"jsdom":6}],4:[function(require,module,exports){
 'use strict'
+
 module.exports = [
-  // P标签处理
   {
     filter: 'p',
-    replacement: function (content, node) {
-      var attrClass = node.getAttribute('class') || ''
-
-      if (attrClass === 'command') {
-        if (!content.endsWith('\n')) {
-          content += '\n'
-        }
-        return '\n```\n' + content + '```\n'
-      } else {
-        return '\n\n' + content + '\n\n'
-      }
+    replacement: function (content) {
+      return '\n\n' + content + '\n\n'
     }
   },
-  // BR 标签处理
+
   {
     filter: 'br',
     replacement: function () {
       return '  \n'
     }
   },
-  // H1 处理
+
   {
-    filter: 'h1',
-    replacement: function (content, node) {
-      if (!titleLock) {
-        titleLock = true;
-        return content + "\n" + "=".repeat(60);
-      }
-      else {
-        return '\n\n' + '# ' + content + '\n\n'
-      }    }
-  },
-  // H2-H6 标签处理
-  {
-    filter: ['h2', 'h3', 'h4', 'h5', 'h6'],
+    filter: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
     replacement: function (content, node) {
       var hLevel = node.nodeName.charAt(1)
-      var hPrefix = '###'
-      hLevel = hLevel - 3
+      var hPrefix = ''
       for (var i = 0; i < hLevel; i++) {
         hPrefix += '#'
       }
       return '\n\n' + hPrefix + ' ' + content + '\n\n'
     }
   },
-  // HR 标签处理
+
   {
     filter: 'hr',
     replacement: function () {
       return '\n\n* * *\n\n'
     }
   },
-  // em i 斜体处理
+
   {
     filter: ['em', 'i'],
     replacement: function (content) {
-      return ' _' + content + '_ '
+      return '_' + content + '_'
     }
   },
-  // Strong b 粗体处理
+
   {
     filter: ['strong', 'b'],
     replacement: function (content) {
       return '**' + content + '**'
     }
   },
+
   // Inline code
   {
     filter: function (node) {
@@ -509,28 +486,17 @@ module.exports = [
       return '`' + content + '`'
     }
   },
-  // A 标签处理
+
   {
     filter: function (node) {
       return node.nodeName === 'A' && node.getAttribute('href')
     },
     replacement: function (content, node) {
-      // var titlePart = node.title ? ' "' + node.title + '"' : ''
-      // return '[' + content + '](' + node.getAttribute('href') + titlePart + ')'
-      linkArray.push(node.getAttribute('href')) // 将href推入linkArray, 后期进行输出
-      return '[' + content + '][' + linkArray.length + ']'
+      var titlePart = node.title ? ' "' + node.title + '"' : ''
+      return '[' + content + '](' + node.getAttribute('href') + titlePart + ')'
     }
   },
-  // 特殊情况下的A标签处理
-  {
-    filter: function (node) {
-      return node.nodeName === 'A' && node.getAttribute('style')
-    },
-    replacement: function (content, node) {
-      return content
-    }
-  },
-  // IMG 标签处理
+
   {
     filter: 'img',
     replacement: function (content, node) {
@@ -538,72 +504,20 @@ module.exports = [
       var src = node.getAttribute('src') || ''
       var title = node.title || ''
       var titlePart = title ? ' "' + title + '"' : ''
-      return src ? '\n![' + alt + ']' + '(' + src + titlePart + ')\n' : ''
+      return src ? '![' + alt + ']' + '(' + src + titlePart + ')' : ''
     }
   },
-  // 代码块处理
+
+  // Code blocks
   {
-    filter: 'pre',
+    filter: function (node) {
+      return node.nodeName === 'PRE' && node.firstChild.nodeName === 'CODE'
+    },
     replacement: function (content, node) {
-      let contentText = node.innerText
-      if (!contentText.endsWith('\n')) {
-        contentText += '\n'
-      }
-      return '\n```\n' + contentText + '```\n'
+      return '\n\n    ' + node.firstChild.textContent.replace(/\n/g, '\n    ') + '\n\n'
     }
   },
-  // 行内代码处理
-  {
-    filter: 'code',
-    replacement: function (content, node) {
-      return '`' + content + '`'
-    }
-  },
-  // IFrame 提醒
-  {
-    filter: 'iframe',
-    replacement: function (content, node) {
-      console.log(node);
-      console.log(content);
-      return '\n ** 此处有iframe,请手动处理 ** \n'
-    }
-  },
-  // Canvas 提醒
-  {
-    filter: 'canvas',
-    replacement: function (content, node) {
-      return '\n ** 此处有Canvas,请手动处理 ** \n'
-    }
-  },
-  // div 处理
-  {
-    filter: 'div',
-    replacement: function (content, node) {
-      var attrClass = node.getAttribute('class') || ''
-      if (attrClass === 'code') {
-        if (!content.endsWith('\n')) {
-          content += '\n'
-        }
-        return '\n```\n' + content + '```\n'
-      } else {
-        return content
-      }
-    }
-  },
-  {
-    'filter': 'textarea',
-    replacement: function (content, node) {
-      return ''
-    }
-  },
-  // 直接返回内容的标签
-  {
-    filter: ['figure', 'span', 'small', 'section', 'font', 'asymspc', 'button', 'article', 'figcaption'],
-    replacement: function (content) {
-      return content
-    }
-  },
-  // 引用
+
   {
     filter: 'blockquote',
     replacement: function (content) {
@@ -613,7 +527,7 @@ module.exports = [
       return '\n\n' + content + '\n\n'
     }
   },
-  // 列表项
+
   {
     filter: 'li',
     replacement: function (content, node) {
@@ -623,10 +537,10 @@ module.exports = [
       var index = Array.prototype.indexOf.call(parent.children, node) + 1
 
       prefix = /ol/i.test(parent.nodeName) ? index + '.  ' : '*   '
-      return prefix + content + '\n'
+      return prefix + content
     }
   },
-  // 有序／无序列表
+
   {
     filter: ['ul', 'ol'],
     replacement: function (content, node) {
@@ -641,7 +555,7 @@ module.exports = [
       return '\n\n' + strings.join('\n') + '\n\n'
     }
   },
-  // 判断是否是block，如果是block，前后加空行
+
   {
     filter: function (node) {
       return this.isBlock(node)
@@ -672,12 +586,12 @@ module.exports = [
   "address",
   "article",
   "aside",
+  "audio",
   "blockquote",
   "canvas",
   "dd",
   "div",
   "dl",
-  "dt",
   "fieldset",
   "figcaption",
   "figure",
@@ -692,7 +606,6 @@ module.exports = [
   "header",
   "hgroup",
   "hr",
-  "li",
   "main",
   "nav",
   "noscript",
@@ -708,6 +621,8 @@ module.exports = [
 ];
 
 },{}],6:[function(require,module,exports){
+
+},{}],7:[function(require,module,exports){
 'use strict';
 
 var voidElements = require('void-elements');
@@ -845,7 +760,7 @@ function next(prev, current) {
 
 module.exports = collapseWhitespace;
 
-},{"block-elements":5,"void-elements":7}],7:[function(require,module,exports){
+},{"block-elements":5,"void-elements":8}],8:[function(require,module,exports){
 /**
  * This file automatically generated from `pre-publish.js`.
  * Do not manually edit.
@@ -869,8 +784,6 @@ module.exports = {
   "track": true,
   "wbr": true
 };
-
-},{}],8:[function(require,module,exports){
 
 },{}]},{},[1])(1)
 });
