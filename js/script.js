@@ -49,9 +49,9 @@ function generateMarkdown() {
     //通过forEach生成LinkMap，放在文件后
     linkArray.forEach(getLink);
     // lctteditor.focus();
+    copyToClipboard();
     // wangEditor获得焦点
     editor.focus();
-    copyToClipboard();
 }
 // 复制内容
 function copyToClipboard() {
