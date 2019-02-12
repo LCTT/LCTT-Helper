@@ -48,7 +48,7 @@ function generateMarkdown() {
     lctteditor.insertValue(content);
     //通过forEach生成LinkMap，放在文件后
     linkArray.forEach(getLink);
-    // lctteditor.focus();
+    lctteditor.focus();
     copyToClipboard();
 }
 // 复制内容
