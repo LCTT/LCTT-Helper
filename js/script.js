@@ -50,8 +50,6 @@ function generateMarkdown() {
     linkArray.forEach(getLink);
     // lctteditor.focus();
     copyToClipboard();
-    // wangEditor获得焦点
-    editor.focus();
 }
 // 复制内容
 function copyToClipboard() {
